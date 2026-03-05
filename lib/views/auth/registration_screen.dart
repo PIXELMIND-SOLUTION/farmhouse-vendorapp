@@ -1,4 +1,6 @@
 
+// ignore_for_file: unused_element_parameter
+
 import 'dart:math' as math;
 import 'dart:io';
 import 'package:farmhouse_vendor/views/navbar/navbar_screen.dart';

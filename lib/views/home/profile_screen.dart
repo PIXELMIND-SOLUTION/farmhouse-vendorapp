@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'dart:io';
 import 'package:farmhouse_vendor/views/auth/login_screen.dart';
+import 'package:farmhouse_vendor/views/profile/edit_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -1237,50 +1238,50 @@ class _ActionButtons extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     children: [
       // // Edit Profile
-      // GestureDetector(
-      //   onTap: () {
-      //     Navigator.push(
-      //       context,
-      //       MaterialPageRoute(builder: (context) => EditProfile()),
-      //     );
-      //   },
+      GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => EditProfile()),
+          );
+        },
 
-      //   // onTap: onEdit,
-      //   child: Container(
-      //     width: double.infinity,
-      //     height: 52,
-      //     decoration: BoxDecoration(
-      //       borderRadius: BorderRadius.circular(14),
-      //       gradient: const LinearGradient(
-      //         colors: [_C.cyan, _C.blue, _C.violet],
-      //         stops: [0.0, 0.5, 1.0],
-      //       ),
-      //       boxShadow: [
-      //         BoxShadow(
-      //           color: _C.cyan.withOpacity(0.28),
-      //           blurRadius: 18,
-      //           offset: const Offset(0, 7),
-      //         ),
-      //       ],
-      //     ),
-      //     child: const Row(
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       children: [
-      //         Icon(Icons.edit_outlined, color: Colors.white, size: 18),
-      //         SizedBox(width: 8),
-      //         Text(
-      //           'Edit Profile',
-      //           style: TextStyle(
-      //             fontSize: 14,
-      //             fontWeight: FontWeight.w700,
-      //             color: Colors.white,
-      //             letterSpacing: 1.0,
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
+        // onTap: onEdit,
+        child: Container(
+          width: double.infinity,
+          height: 52,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            gradient: const LinearGradient(
+              colors: [_C.cyan, _C.blue, _C.violet],
+              stops: [0.0, 0.5, 1.0],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: _C.cyan.withOpacity(0.28),
+                blurRadius: 18,
+                offset: const Offset(0, 7),
+              ),
+            ],
+          ),
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.edit_outlined, color: Colors.white, size: 18),
+              SizedBox(width: 8),
+              Text(
+                'Edit Profile',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                  letterSpacing: 1.0,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       const SizedBox(height: 12),
       GestureDetector(
         onTap: () {

@@ -1,7 +1,9 @@
 import 'dart:math' as math;
+import 'package:farmhouse_vendor/helper/shared_preference.dart';
 import 'package:farmhouse_vendor/views/auth/login_screen.dart';
+import 'package:farmhouse_vendor/views/navbar/navbar_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 class _C {
   static const bg0 = Color(0xFF030712);
   static const bg1 = Color(0xFF0B1426);
@@ -15,13 +17,14 @@ class _C {
 
 class _Particle {
   double x, y, radius, speed, angle, opacity;
-  _Particle(
-      {required this.x,
-      required this.y,
-      required this.radius,
-      required this.speed,
-      required this.angle,
-      required this.opacity});
+  _Particle({
+    required this.x,
+    required this.y,
+    required this.radius,
+    required this.speed,
+    required this.angle,
+    required this.opacity,
+  });
 }
 
 class _ParticlePainter extends CustomPainter {
@@ -108,28 +111,31 @@ class _HexPainter extends CustomPainter {
     }
     path.close();
     canvas.drawPath(
-        path,
-        Paint()
-          ..color = _C.cyan.withOpacity(0.25)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18));
+      path,
+      Paint()
+        ..color = _C.cyan.withOpacity(0.25)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18),
+    );
     canvas.drawPath(
-        path,
-        Paint()
-          ..shader = const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFF0E2A45), Color(0xFF1A1040)],
-          ).createShader(Rect.fromLTWH(0, 0, size.width, size.height)));
+      path,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF0E2A45), Color(0xFF1A1040)],
+        ).createShader(Rect.fromLTWH(0, 0, size.width, size.height)),
+    );
     canvas.drawPath(
-        path,
-        Paint()
-          ..shader = const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [_C.cyan, _C.violet],
-          ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.5);
+      path,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [_C.cyan, _C.violet],
+        ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.5,
+    );
   }
 
   @override
@@ -142,23 +148,26 @@ class _LogoHex extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        width: size,
-        height: size,
-        child: CustomPaint(
-          painter: _HexPainter(),
-          child: Center(
-            child: ShaderMask(
-              shaderCallback: (b) => const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [_C.cyan, _C.violet],
-              ).createShader(b),
-              child: Icon(Icons.bolt_rounded,
-                  size: size * 0.44, color: Colors.white),
-            ),
+    width: size,
+    height: size,
+    child: CustomPaint(
+      painter: _HexPainter(),
+      child: Center(
+        child: ShaderMask(
+          shaderCallback: (b) => const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [_C.cyan, _C.violet],
+          ).createShader(b),
+          child: Icon(
+            Icons.bolt_rounded,
+            size: size * 0.44,
+            color: Colors.white,
           ),
         ),
-      );
+      ),
+    ),
+  );
 }
 
 // ═══════════════════════════════════════════════════════
@@ -173,12 +182,25 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-  late final AnimationController _bgCtrl, _particleCtrl, _ringCtrl,
-      _logoCtrl, _textCtrl, _barCtrl, _pulseCtrl, _exitCtrl;
+  late final AnimationController _bgCtrl,
+      _particleCtrl,
+      _ringCtrl,
+      _logoCtrl,
+      _textCtrl,
+      _barCtrl,
+      _pulseCtrl,
+      _exitCtrl;
 
-  late final Animation<double> _bgAnim, _logoScale, _logoOpacity,
-      _logoRotate, _titleOpacity, _taglineOpacity, _barWidth,
-      _barOpacity, _pulse, _exitAnim;
+  late final Animation<double> _bgAnim,
+      _logoScale,
+      _logoOpacity,
+      _logoRotate,
+      _titleOpacity,
+      _taglineOpacity,
+      _barWidth,
+      _barOpacity,
+      _pulse,
+      _exitAnim;
   late final Animation<Offset> _titleSlide, _taglineSlide;
 
   final _particles = <_Particle>[];
@@ -190,63 +212,101 @@ class _SplashScreenState extends State<SplashScreen>
     _buildParticles();
 
     _bgCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1200));
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    );
     _bgAnim = CurvedAnimation(parent: _bgCtrl, curve: Curves.easeIn);
 
-    _particleCtrl =
-        AnimationController(vsync: this, duration: const Duration(seconds: 6))
-          ..repeat();
+    _particleCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 6),
+    )..repeat();
 
     _ringCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 2000))
-      ..repeat();
+      vsync: this,
+      duration: const Duration(milliseconds: 2000),
+    )..repeat();
 
     _logoCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 900));
-    _logoScale = Tween(begin: 0.0, end: 1.0).animate(
-        CurvedAnimation(parent: _logoCtrl, curve: Curves.elasticOut));
-    _logoOpacity = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
+    _logoScale = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _logoCtrl, curve: Curves.elasticOut));
+    _logoOpacity = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
         parent: _logoCtrl,
-        curve: const Interval(0.0, 0.5, curve: Curves.easeIn)));
-    _logoRotate = Tween(begin: -0.3, end: 0.0).animate(
-        CurvedAnimation(parent: _logoCtrl, curve: Curves.elasticOut));
+        curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
+      ),
+    );
+    _logoRotate = Tween(
+      begin: -0.3,
+      end: 0.0,
+    ).animate(CurvedAnimation(parent: _logoCtrl, curve: Curves.elasticOut));
 
     _textCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 700));
-    _titleOpacity = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    _titleOpacity = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
         parent: _textCtrl,
-        curve: const Interval(0.0, 0.6, curve: Curves.easeOut)));
-    _titleSlide =
-        Tween(begin: const Offset(0, 0.4), end: Offset.zero).animate(
-            CurvedAnimation(parent: _textCtrl, curve: Curves.easeOut));
-    _taglineOpacity = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+        curve: const Interval(0.0, 0.6, curve: Curves.easeOut),
+      ),
+    );
+    _titleSlide = Tween(
+      begin: const Offset(0, 0.4),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _textCtrl, curve: Curves.easeOut));
+    _taglineOpacity = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
         parent: _textCtrl,
-        curve: const Interval(0.35, 1.0, curve: Curves.easeOut)));
-    _taglineSlide =
-        Tween(begin: const Offset(0, 0.5), end: Offset.zero).animate(
-            CurvedAnimation(
-                parent: _textCtrl,
-                curve: const Interval(0.35, 1.0, curve: Curves.easeOut)));
+        curve: const Interval(0.35, 1.0, curve: Curves.easeOut),
+      ),
+    );
+    _taglineSlide = Tween(begin: const Offset(0, 0.5), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _textCtrl,
+            curve: const Interval(0.35, 1.0, curve: Curves.easeOut),
+          ),
+        );
 
     _barCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 2200));
-    _barWidth = Tween(begin: 0.0, end: 1.0).animate(
-        CurvedAnimation(parent: _barCtrl, curve: Curves.easeInOut));
-    _barOpacity = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      vsync: this,
+      duration: const Duration(milliseconds: 2200),
+    );
+    _barWidth = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _barCtrl, curve: Curves.easeInOut));
+    _barOpacity = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
         parent: _barCtrl,
-        curve: const Interval(0.0, 0.15, curve: Curves.easeIn)));
+        curve: const Interval(0.0, 0.15, curve: Curves.easeIn),
+      ),
+    );
 
     _pulseCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1800))
-      ..repeat(reverse: true);
-    _pulse = Tween(begin: 1.0, end: 1.06).animate(
-        CurvedAnimation(parent: _pulseCtrl, curve: Curves.easeInOut));
+      vsync: this,
+      duration: const Duration(milliseconds: 1800),
+    )..repeat(reverse: true);
+    _pulse = Tween(
+      begin: 1.0,
+      end: 1.06,
+    ).animate(CurvedAnimation(parent: _pulseCtrl, curve: Curves.easeInOut));
 
     // Exit fade-out
     _exitCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 600));
-    _exitAnim = Tween(begin: 1.0, end: 0.0).animate(
-        CurvedAnimation(parent: _exitCtrl, curve: Curves.easeIn));
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
+    _exitAnim = Tween(
+      begin: 1.0,
+      end: 0.0,
+    ).animate(CurvedAnimation(parent: _exitCtrl, curve: Curves.easeIn));
 
     // Sequence
     _bgCtrl.forward().then((_) {
@@ -259,28 +319,47 @@ class _SplashScreenState extends State<SplashScreen>
 
   void _buildParticles() {
     for (int i = 0; i < 60; i++) {
-      _particles.add(_Particle(
-        x: _rng.nextDouble(),
-        y: _rng.nextDouble(),
-        radius: _rng.nextDouble() * 1.8 + 0.4,
-        speed: _rng.nextDouble() * 0.12 + 0.03,
-        angle: _rng.nextDouble() * math.pi * 2,
-        opacity: _rng.nextDouble() * 0.5 + 0.1,
-      ));
+      _particles.add(
+        _Particle(
+          x: _rng.nextDouble(),
+          y: _rng.nextDouble(),
+          radius: _rng.nextDouble() * 1.8 + 0.4,
+          speed: _rng.nextDouble() * 0.12 + 0.03,
+          angle: _rng.nextDouble() * math.pi * 2,
+          opacity: _rng.nextDouble() * 0.5 + 0.1,
+        ),
+      );
     }
   }
+
+  // Future<void> _navigateToLogin() async {
+  //   await _exitCtrl.forward();
+  //   if (!mounted) return;
+  //   Navigator.of(context).pushReplacement(
+  //     PageRouteBuilder(
+  //       transitionDuration: const Duration(milliseconds: 700),
+  //       pageBuilder: (_, __, ___) => const LoginScreen(),
+  //       transitionsBuilder: (_, anim, __, child) => FadeTransition(
+  //         opacity: anim,
+  //         child: child,
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Future<void> _navigateToLogin() async {
     await _exitCtrl.forward();
     if (!mounted) return;
+
+    final loggedIn = await SharedPrefHelper.isLoggedIn();
+
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 700),
-        pageBuilder: (_, __, ___) => const LoginScreen(),
-        transitionsBuilder: (_, anim, __, child) => FadeTransition(
-          opacity: anim,
-          child: child,
-        ),
+        pageBuilder: (_, __, ___) =>
+            loggedIn ? const NavbarScreen() : const LoginScreen(),
+        transitionsBuilder: (_, anim, __, child) =>
+            FadeTransition(opacity: anim, child: child),
       ),
     );
   }
@@ -288,8 +367,14 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void dispose() {
     for (final c in [
-      _bgCtrl, _particleCtrl, _ringCtrl, _logoCtrl,
-      _textCtrl, _barCtrl, _pulseCtrl, _exitCtrl
+      _bgCtrl,
+      _particleCtrl,
+      _ringCtrl,
+      _logoCtrl,
+      _textCtrl,
+      _barCtrl,
+      _pulseCtrl,
+      _exitCtrl,
     ]) {
       c.dispose();
     }
@@ -303,8 +388,14 @@ class _SplashScreenState extends State<SplashScreen>
       backgroundColor: _C.bg0,
       body: AnimatedBuilder(
         animation: Listenable.merge([
-          _bgAnim, _particleCtrl, _ringCtrl, _logoCtrl,
-          _textCtrl, _barCtrl, _pulseCtrl, _exitAnim,
+          _bgAnim,
+          _particleCtrl,
+          _ringCtrl,
+          _logoCtrl,
+          _textCtrl,
+          _barCtrl,
+          _pulseCtrl,
+          _exitAnim,
         ]),
         builder: (context, _) {
           return Opacity(
@@ -333,7 +424,8 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
                 // Particles
                 CustomPaint(
-                    painter: _ParticlePainter(_particles, _particleCtrl.value)),
+                  painter: _ParticlePainter(_particles, _particleCtrl.value),
+                ),
                 // Rings
                 CustomPaint(painter: _RingPainter(_ringCtrl.value)),
                 // Content
@@ -349,8 +441,7 @@ class _SplashScreenState extends State<SplashScreen>
                             scale: _logoScale.value,
                             child: Transform.rotate(
                               angle: _logoRotate.value,
-                              child: _LogoHex(
-                                  size: size.shortestSide * 0.26),
+                              child: _LogoHex(size: size.shortestSide * 0.26),
                             ),
                           ),
                         ),
@@ -405,25 +496,30 @@ class _SplashScreenState extends State<SplashScreen>
                                 borderRadius: BorderRadius.circular(100),
                                 child: SizedBox(
                                   height: 2,
-                                  child: Stack(children: [
-                                    Container(
-                                        color: Colors.white.withOpacity(0.08)),
-                                    FractionallySizedBox(
-                                      widthFactor: _barWidth.value,
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          gradient: LinearGradient(
-                                              colors: [_C.cyan, _C.violet]),
-                                          boxShadow: [
-                                            BoxShadow(
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        color: Colors.white.withOpacity(0.08),
+                                      ),
+                                      FractionallySizedBox(
+                                        widthFactor: _barWidth.value,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            gradient: LinearGradient(
+                                              colors: [_C.cyan, _C.violet],
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
                                                 color: _C.cyan,
                                                 blurRadius: 8,
-                                                spreadRadius: 1)
-                                          ],
+                                                spreadRadius: 1,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ]),
+                                    ],
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: 14),
@@ -455,10 +551,11 @@ class _SplashScreenState extends State<SplashScreen>
                       'v 1.0.0',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 11,
-                          letterSpacing: 2,
-                          color: Color(0xFF2C4A5E),
-                          fontWeight: FontWeight.w500),
+                        fontSize: 11,
+                        letterSpacing: 2,
+                        color: Color(0xFF2C4A5E),
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),

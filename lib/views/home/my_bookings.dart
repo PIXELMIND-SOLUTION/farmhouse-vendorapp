@@ -72,7 +72,8 @@ class _MyBookingsState extends State<MyBookings>
       farmhouseName: 'Green Meadows Farmhouse',
       location: 'Lonavala, Maharashtra',
       pricePerNight: 4500,
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600',
+      imageUrl:
+          'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600',
       checkIn: '15 Mar 2025',
       checkOut: '17 Mar 2025',
       status: 'Upcoming',
@@ -111,7 +112,8 @@ class _MyBookingsState extends State<MyBookings>
       farmhouseName: 'Sunset Valley Retreat',
       location: 'Alibaug, Maharashtra',
       pricePerNight: 6200,
-      imageUrl: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600',
+      imageUrl:
+          'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600',
       checkIn: '02 Feb 2025',
       checkOut: '04 Feb 2025',
       status: 'Completed',
@@ -134,7 +136,8 @@ class _MyBookingsState extends State<MyBookings>
       farmhouseName: 'Hilltop Heritage Bungalow',
       location: 'Mahabaleshwar, Maharashtra',
       pricePerNight: 3800,
-      imageUrl: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600',
+      imageUrl:
+          'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600',
       checkIn: '20 Jan 2025',
       checkOut: '21 Jan 2025',
       status: 'Cancelled',
@@ -233,7 +236,6 @@ class _MyBookingsState extends State<MyBookings>
           // ),
         ],
       ),
-  
     );
   }
 
@@ -249,10 +251,7 @@ class _MyBookingsState extends State<MyBookings>
         indicatorWeight: 3,
         labelColor: Colors.white,
         unselectedLabelColor: const Color(0xFF95D5B2),
-        labelStyle: const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
+        labelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         unselectedLabelStyle: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w400,
@@ -267,8 +266,11 @@ class _MyBookingsState extends State<MyBookings>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.calendar_today_outlined,
-              size: 64, color: Colors.grey[300]),
+          Icon(
+            Icons.calendar_today_outlined,
+            size: 64,
+            color: Colors.grey[300],
+          ),
           const SizedBox(height: 16),
           Text(
             'No bookings found',
@@ -358,8 +360,9 @@ class _BookingCard extends StatelessWidget {
           Stack(
             children: [
               ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(20)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(20),
+                ),
                 child: Image.network(
                   booking.imageUrl,
                   height: 180,
@@ -387,8 +390,11 @@ class _BookingCard extends StatelessWidget {
                       ),
                     ),
                     child: const Center(
-                      child: Icon(Icons.home_work_outlined,
-                          size: 64, color: Colors.white54),
+                      child: Icon(
+                        Icons.home_work_outlined,
+                        size: 64,
+                        color: Colors.white54,
+                      ),
                     ),
                   ),
                 ),
@@ -398,8 +404,10 @@ class _BookingCard extends StatelessWidget {
                 top: 12,
                 left: 12,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: _statusColor,
                     borderRadius: BorderRadius.circular(20),
@@ -434,8 +442,10 @@ class _BookingCard extends StatelessWidget {
                 top: 12,
                 right: 12,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.65),
                     borderRadius: BorderRadius.circular(20),
@@ -456,8 +466,10 @@ class _BookingCard extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
@@ -505,17 +517,24 @@ class _BookingCard extends StatelessWidget {
                     const SizedBox(width: 8),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: const Color(0xFFF0FBF4),
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                            color: const Color(0xFF95D5B2), width: 1),
+                          color: const Color(0xFF95D5B2),
+                          width: 1,
+                        ),
                       ),
                       child: Row(
                         children: [
-                          const Icon(Icons.star_rounded,
-                              color: Color(0xFFF4A024), size: 16),
+                          const Icon(
+                            Icons.star_rounded,
+                            color: Color(0xFFF4A024),
+                            size: 16,
+                          ),
                           const SizedBox(width: 3),
                           Text(
                             booking.rating.toString(),
@@ -542,8 +561,11 @@ class _BookingCard extends StatelessWidget {
                 // Location
                 Row(
                   children: [
-                    const Icon(Icons.location_on_outlined,
-                        size: 14, color: Color(0xFF52B788)),
+                    const Icon(
+                      Icons.location_on_outlined,
+                      size: 14,
+                      color: Color(0xFF52B788),
+                    ),
                     const SizedBox(width: 4),
                     Text(
                       booking.location,
@@ -564,27 +586,30 @@ class _BookingCard extends StatelessWidget {
                     color: const Color(0xFFF0FBF4),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                        color: const Color(0xFFB7E4C7), width: 1),
+                      color: const Color(0xFFB7E4C7),
+                      width: 1,
+                    ),
                   ),
                   child: Row(
                     children: [
-                      _DateChip(
-                          label: 'Check-in', value: booking.checkIn),
+                      _DateChip(label: 'Check-in', value: booking.checkIn),
                       const Expanded(
                         child: Center(
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               SizedBox(width: 4),
-                              Icon(Icons.arrow_forward,
-                                  size: 16, color: Color(0xFF52B788)),
+                              Icon(
+                                Icons.arrow_forward,
+                                size: 16,
+                                color: Color(0xFF52B788),
+                              ),
                               SizedBox(width: 4),
                             ],
                           ),
                         ),
                       ),
-                      _DateChip(
-                          label: 'Check-out', value: booking.checkOut),
+                      _DateChip(label: 'Check-out', value: booking.checkOut),
                     ],
                   ),
                 ),
@@ -605,7 +630,10 @@ class _BookingCard extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton.icon(
                     onPressed: onManageSlots,
-                    icon: const Icon(Icons.calendar_view_week_rounded, size: 18),
+                    icon: const Icon(
+                      Icons.calendar_view_week_rounded,
+                      size: 18,
+                    ),
                     label: const Text('Manage Slots'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF2D6A4F),
@@ -642,18 +670,24 @@ class _DateChip extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label,
-            style: const TextStyle(
-                fontSize: 10,
-                color: Color(0xFF74A98E),
-                fontWeight: FontWeight.w500,
-                letterSpacing: 0.5)),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 10,
+            color: Color(0xFF74A98E),
+            fontWeight: FontWeight.w500,
+            letterSpacing: 0.5,
+          ),
+        ),
         const SizedBox(height: 2),
-        Text(value,
-            style: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF1B4332))),
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+            color: Color(0xFF1B4332),
+          ),
+        ),
       ],
     );
   }
@@ -691,8 +725,7 @@ class _ManageSlotsSheet extends StatefulWidget {
   final BookingModel booking;
   final VoidCallback onSlotUpdated;
 
-  const _ManageSlotsSheet(
-      {required this.booking, required this.onSlotUpdated});
+  const _ManageSlotsSheet({required this.booking, required this.onSlotUpdated});
 
   @override
   State<_ManageSlotsSheet> createState() => _ManageSlotsSheetState();
@@ -723,7 +756,8 @@ class _ManageSlotsSheetState extends State<_ManageSlotsSheet> {
               backgroundColor: const Color.fromARGB(255, 255, 60, 0),
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
           );
         },
@@ -739,8 +773,7 @@ class _ManageSlotsSheetState extends State<_ManageSlotsSheet> {
         content: const Text('Slot activated successfully'),
         backgroundColor: const Color(0xFF1565C0),
         behavior: SnackBarBehavior.floating,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
   }
@@ -777,8 +810,11 @@ class _ManageSlotsSheetState extends State<_ManageSlotsSheet> {
                     color: const Color(0xFFE8F5E9),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.calendar_view_week_rounded,
-                      color: Color(0xFF2D6A4F), size: 22),
+                  child: const Icon(
+                    Icons.calendar_view_week_rounded,
+                    color: Color(0xFF2D6A4F),
+                    size: 22,
+                  ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -806,8 +842,10 @@ class _ManageSlotsSheetState extends State<_ManageSlotsSheet> {
                 ),
                 IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.close_rounded,
-                      color: Color(0xFF5A7A65)),
+                  icon: const Icon(
+                    Icons.close_rounded,
+                    color: Color(0xFF5A7A65),
+                  ),
                 ),
               ],
             ),
@@ -839,16 +877,24 @@ class _ManageSlotsSheetState extends State<_ManageSlotsSheet> {
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 14, vertical: 12),
+                  horizontal: 14,
+                  vertical: 12,
+                ),
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFB7E4C7), width: 1.5),
+                  border: Border.all(
+                    color: const Color(0xFFB7E4C7),
+                    width: 1.5,
+                  ),
                   borderRadius: BorderRadius.circular(12),
                   color: const Color(0xFFF9FEFB),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.calendar_today_rounded,
-                        color: Color(0xFF2D6A4F), size: 18),
+                    const Icon(
+                      Icons.calendar_today_rounded,
+                      color: Color(0xFF2D6A4F),
+                      size: 18,
+                    ),
                     const SizedBox(width: 10),
                     Text(
                       _selectedDate == null
@@ -866,8 +912,11 @@ class _ManageSlotsSheetState extends State<_ManageSlotsSheet> {
                     if (_selectedDate != null)
                       GestureDetector(
                         onTap: () => setState(() => _selectedDate = null),
-                        child: const Icon(Icons.clear_rounded,
-                            color: Color(0xFF74A98E), size: 18),
+                        child: const Icon(
+                          Icons.clear_rounded,
+                          color: Color(0xFF74A98E),
+                          size: 18,
+                        ),
                       ),
                   ],
                 ),
@@ -939,7 +988,7 @@ class _SlotTile extends StatelessWidget {
                   color: const Color(0xFF2D6A4F).withOpacity(0.06),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
-                )
+                ),
               ]
             : [],
       ),
@@ -954,7 +1003,9 @@ class _SlotTile extends StatelessWidget {
                   children: [
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 3),
+                        horizontal: 8,
+                        vertical: 3,
+                      ),
                       decoration: BoxDecoration(
                         color: isActive
                             ? const Color(0xFFE8F5E9)
@@ -977,7 +1028,9 @@ class _SlotTile extends StatelessWidget {
                     if (isBooked)
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 7, vertical: 3),
+                          horizontal: 7,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: const Color(0xFFFFF3E0),
                           borderRadius: BorderRadius.circular(6),
@@ -985,8 +1038,11 @@ class _SlotTile extends StatelessWidget {
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.lock_outline_rounded,
-                                size: 10, color: Color(0xFFE65100)),
+                            Icon(
+                              Icons.lock_outline_rounded,
+                              size: 10,
+                              color: Color(0xFFE65100),
+                            ),
                             SizedBox(width: 3),
                             Text(
                               'Booked',
@@ -1004,8 +1060,11 @@ class _SlotTile extends StatelessWidget {
                 const SizedBox(height: 5),
                 Row(
                   children: [
-                    const Icon(Icons.access_time_rounded,
-                        size: 13, color: Color(0xFF74A98E)),
+                    const Icon(
+                      Icons.access_time_rounded,
+                      size: 13,
+                      color: Color(0xFF74A98E),
+                    ),
                     const SizedBox(width: 4),
                     Text(
                       slot.timeRange,
@@ -1053,9 +1112,7 @@ class _SlotTile extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
-                  color: isActive
-                      ? const Color(0xFF2D6A4F)
-                      : Colors.grey[400],
+                  color: isActive ? const Color(0xFF2D6A4F) : Colors.grey[400],
                 ),
               ),
             ],
@@ -1117,8 +1174,11 @@ class _DeactivateDialogState extends State<_DeactivateDialog> {
                     color: const Color(0xFFFFF3E0),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.pause_circle_outline_rounded,
-                      color: Color(0xFFE65100), size: 22),
+                  child: const Icon(
+                    Icons.pause_circle_outline_rounded,
+                    color: Color(0xFFE65100),
+                    size: 22,
+                  ),
                 ),
                 const SizedBox(width: 12),
                 const Expanded(
@@ -1157,8 +1217,11 @@ class _DeactivateDialogState extends State<_DeactivateDialog> {
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.access_time_rounded,
-                      size: 16, color: Color(0xFF2D6A4F)),
+                  const Icon(
+                    Icons.access_time_rounded,
+                    size: 16,
+                    color: Color(0xFF2D6A4F),
+                  ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -1201,7 +1264,9 @@ class _DeactivateDialogState extends State<_DeactivateDialog> {
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 6),
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: selected
                           ? const Color(0xFF2D6A4F)
@@ -1218,7 +1283,9 @@ class _DeactivateDialogState extends State<_DeactivateDialog> {
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
-                        color: selected ? Colors.white : const Color(0xFF2D6A4F),
+                        color: selected
+                            ? Colors.white
+                            : const Color(0xFF2D6A4F),
                       ),
                     ),
                   ),
@@ -1245,16 +1312,10 @@ class _DeactivateDialogState extends State<_DeactivateDialog> {
                 _hasError = false;
                 _selectedReason = null;
               }),
-              style: const TextStyle(
-                fontSize: 14,
-                color: Color(0xFF1B2D1F),
-              ),
+              style: const TextStyle(fontSize: 14, color: Color(0xFF1B2D1F)),
               decoration: InputDecoration(
                 hintText: 'Describe why you\'re deactivating this slot...',
-                hintStyle: TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey[400],
-                ),
+                hintStyle: TextStyle(fontSize: 13, color: Colors.grey[400]),
                 errorText: _hasError ? 'Please enter a reason' : null,
                 filled: true,
                 fillColor: const Color(0xFFF9FEFB),
@@ -1269,12 +1330,13 @@ class _DeactivateDialogState extends State<_DeactivateDialog> {
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: const BorderSide(
-                      color: Color(0xFF2D6A4F), width: 2),
+                    color: Color(0xFF2D6A4F),
+                    width: 2,
+                  ),
                 ),
                 errorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide:
-                      const BorderSide(color: Colors.red, width: 1.5),
+                  borderSide: const BorderSide(color: Colors.red, width: 1.5),
                 ),
                 contentPadding: const EdgeInsets.all(12),
               ),
@@ -1290,9 +1352,12 @@ class _DeactivateDialogState extends State<_DeactivateDialog> {
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 13),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                       side: const BorderSide(
-                          color: Color(0xFFB7E4C7), width: 1.5),
+                        color: Color(0xFFB7E4C7),
+                        width: 1.5,
+                      ),
                     ),
                     child: const Text(
                       'Cancel',
@@ -1319,7 +1384,8 @@ class _DeactivateDialogState extends State<_DeactivateDialog> {
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 13),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                       elevation: 0,
                     ),
                     child: const Text(
