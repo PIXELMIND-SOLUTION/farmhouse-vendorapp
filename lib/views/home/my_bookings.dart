@@ -209,9 +209,10 @@ class _MyBookingsState extends State<MyBookings>
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: const Color(0xFF1B4332),
+      centerTitle: true,
       elevation: 0,
       title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
           Text(
             'My Bookings',
@@ -222,14 +223,14 @@ class _MyBookingsState extends State<MyBookings>
               letterSpacing: 0.3,
             ),
           ),
-          Text(
-            'Manage your reservations',
-            style: TextStyle(
-              color: Color(0xFF95D5B2),
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
+          // Text(
+          //   'Manage your reservations',
+          //   style: TextStyle(
+          //     color: Color(0xFF95D5B2),
+          //     fontSize: 12,
+          //     fontWeight: FontWeight.w400,
+          //   ),
+          // ),
         ],
       ),
   
@@ -719,7 +720,7 @@ class _ManageSlotsSheetState extends State<_ManageSlotsSheet> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: const Text('Slot deactivated successfully'),
-              backgroundColor: const Color(0xFF2D6A4F),
+              backgroundColor: const Color.fromARGB(255, 255, 60, 0),
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
